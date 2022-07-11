@@ -6,6 +6,8 @@ export const DO_UPDATE_FORM_FIELD = "DO_UPDATE_FORM_FIELD";
 
 export const DO_UPDATE_FIELD_TYPE = "DO_UPDATE_FIELD_TYPE";
 
+export const DO_REMOVE_TYPE = "DO_REMOVE_TYPE";
+
 export const doAddNewType = () => ({
   type: DO_ADD_TYPE_REQUEST,
 });
@@ -40,5 +42,13 @@ export const doUpdateFieldType = (
     fieldIndex,
     formIndex,
     value,
+  },
+});
+
+export const doRemoveType = (index: number, typeId: string) => ({
+  type: DO_REMOVE_TYPE,
+  payload: {
+    index,
+    typeId,
   },
 });

@@ -1,5 +1,9 @@
+import { CloseButton } from "react-bootstrap";
 import { useDispatch } from "react-redux";
-import { doUpdateDataFields } from "src/store/actions/dataActions";
+import {
+  doRemoveData,
+  doUpdateDataFields,
+} from "src/store/actions/dataActions";
 import { Data, DataFields } from "src/store/reducers/dataReducer";
 import InputField from "src/ui-core/InputField";
 import TextArea from "src/ui-core/TextArea";
@@ -47,12 +51,17 @@ const DataForm = ({ data, index }: DataFormProps) => {
     }
   };
 
+  const handleRemoveValue = () => {
+    dispatch(doRemoveData(index, data.typeId));
+  };
+
   return (
-    <div>
-      <div>
-        <p>{data?.object_type as string}</p>
+    <div className="text-start">
+      <div className="px-3 d-flex align-items-center py-2 name">
+        <p className="mb-0">{data?.object_type as string}</p>
+        <CloseButton onClick={handleRemoveValue} />
       </div>
-      <div className="d-flex flex-column">
+      <div className="d-flex flex-column px-3 py-2">
         {fields.map((field, index) => {
           return (
             <div key={`field-${index + 1}`} className="d-flex">

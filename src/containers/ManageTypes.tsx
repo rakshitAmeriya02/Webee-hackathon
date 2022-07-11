@@ -18,15 +18,32 @@ const ManageTypes = () => {
       <NavigationBar />
       <Row>
         {types.map((_, index) => (
-          <Col xs={12} sm={6} md={4} key={`form-${index + 1}`}>
+          <Col
+            xs={12}
+            sm={6}
+            md={4}
+            key={`form-${index + 1}`}
+            style={{
+              border: "1px solid #cbc4c4",
+              borderRadius: "5px",
+              marginRight: "10px",
+            }}
+            className="mr-3 px-0 mb-2"
+          >
             <TypesForm index={index} />
           </Col>
         ))}
         <Col
           md={2}
+          style={{
+            padding: "unset",
+            margin: 'auto'
+          }}
           className="d-flex justify-content-center align-items-center"
         >
-          <CustomButton onClick={handleAddType}>Add Type</CustomButton>
+          <CustomButton className="w-100" onClick={handleAddType}>
+            Add Type
+          </CustomButton>
         </Col>
       </Row>
     </div>

@@ -4,6 +4,7 @@ import { AppActions } from "..";
 import {
   DO_ADD_FIELD_TO_TYPE,
   DO_ADD_TYPE_REQUEST,
+  DO_REMOVE_TYPE,
   DO_UPDATE_FIELD_TYPE,
   DO_UPDATE_FORM_FIELD,
 } from "../actions/typesAction";
@@ -66,6 +67,13 @@ const updateFormFieldType = (state: TypeForm[], action: AppActions) => {
   return updatedState;
 };
 
+const removeType = (state: TypeForm[], action: AppActions) => {
+  let updatedState: TypeForm[] = JSON.parse(JSON.stringify(state));
+  const index = action.payload.index;
+  updatedState = updatedState.filter((_, i) => i !== index);
+  return updatedState;
+};
+
 function typesReducer(state: TypeForm[] = [], action: AppActions) {
   switch (action.type) {
     case DO_ADD_TYPE_REQUEST:
@@ -76,6 +84,8 @@ function typesReducer(state: TypeForm[] = [], action: AppActions) {
       return updateFormField(state, action);
     case DO_UPDATE_FIELD_TYPE:
       return updateFormFieldType(state, action);
+    case DO_REMOVE_TYPE:
+      return removeType(state, action);
     default:
       return state;
   }

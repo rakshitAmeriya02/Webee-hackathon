@@ -3,8 +3,10 @@ import { generatedId } from "src/utils/helpers";
 import { AppActions } from "..";
 import {
   DO_CREATE_NEW_ITEM,
+  DO_REMOVE_DATA,
   DO_UPDATE_DATA_FIELDS,
 } from "../actions/dataActions";
+import { DO_REMOVE_TYPE } from "../actions/typesAction";
 
 export interface DataFields {
   value: string;
@@ -54,12 +56,31 @@ const updateDataFields = (state: DataState, action: AppActions) => {
   return updatedState;
 };
 
+const removeTypeData = (state: DataState, action: AppActions) => {
+  const updatedState: DataState = JSON.parse(JSON.stringify(state));
+  const typeId = action.payload.typeId;
+  delete updatedState[typeId];
+  return updatedState;
+};
+
+const removeData = (state: DataState, action: AppActions) => {
+  const updatedState: DataState = JSON.parse(JSON.stringify(state));
+  const typeId = action.payload.typeId;
+  const index = action.payload.index;
+  updatedState[typeId].filter((_, i) => i !== index);
+  return updatedState;
+};
+
 function dataReducer(state: DataState = {}, action: AppActions) {
   switch (action.type) {
     case DO_CREATE_NEW_ITEM:
       return addNewItem(state, action);
     case DO_UPDATE_DATA_FIELDS:
       return updateDataFields(state, action);
+    case DO_REMOVE_TYPE:
+      return removeTypeData(state, action);
+    case DO_REMOVE_DATA:
+      return removeData(state, action);
     default:
       return state;
   }

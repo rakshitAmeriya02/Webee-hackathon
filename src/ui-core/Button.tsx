@@ -9,7 +9,7 @@ interface CustomButtonProps {
 
 const CustomButton = ({ className, children, onClick }: CustomButtonProps) => {
   return (
-    <Button className={className} onClick={onClick}>
+    <Button className={className} onClick={onClick} variant="secondary">
       {children}
     </Button>
   );

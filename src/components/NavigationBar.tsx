@@ -29,9 +29,9 @@ const NavigationBar = () => {
     return defaultItems;
   }, [types]);
   return (
-    <div className="d-flex align-items-center px-4 py-2 w-100">
+    <div className="d-flex align-items-center px-4 py-2 w-100 mb-2">
       {headerItems.map((item) => (
-        <Link className="mx-2" key={item.label} to={item.redirectTo}>
+        <Link className="mx-2 text-secondary" key={item.label} to={item.redirectTo}>
           {item.label}
         </Link>
       ))}

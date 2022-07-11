@@ -37,7 +37,18 @@ const TypeView = () => {
       <NavigationBar />
       <Row>
         {filteredData.map((data, index) => (
-          <Col xs={12} sm={6} md={4} key={`form-${index + 1}`}>
+          <Col
+            xs={12}
+            sm={6}
+            md={4}
+            key={`form-${index + 1}`}
+            style={{
+              border: "1px solid #cbc4c4",
+              borderRadius: "5px",
+              marginRight: "10px",
+            }}
+            className="mr-3 px-0 mb-2"
+          >
             <DataForm data={data} index={index} />
           </Col>
         ))}

@@ -1,8 +1,10 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { CloseButton } from "react-bootstrap";
 import { AppState } from "src/store";
 import {
   doAddNewField,
+  doRemoveType,
   doUpdateFieldType,
   doUpdateFormField,
 } from "src/store/actions/typesAction";
@@ -11,6 +13,8 @@ import CustomDropdown from "src/ui-core/Dropdown";
 import InputField from "src/ui-core/InputField";
 import Select from "src/ui-core/Select";
 import { FIELD_TYPE_OPTIONS } from "src/utils/constants";
+
+import "./TypeForm.css";
 
 interface TypesFormProps {
   index: number;
@@ -42,12 +46,19 @@ const TypesForm = ({ index }: TypesFormProps) => {
     dispatch(doUpdateFormField(name, value, index, fieldIndex));
   };
 
+  const handleRemoveValue = () => {
+    dispatch(doRemoveType(index, formData.id));
+  };
+
   return (
     <div className="text-start">
       <div>
-        <p>{formData.object_type}</p>
+        <div className="px-3 d-flex align-items-center py-2 name">
+          <p className="mb-0">{formData.object_type}</p>
+          <CloseButton onClick={handleRemoveValue} />
+        </div>
       </div>
-      <div>
+      <div className="px-3 py-2">
         <InputField
           value={formData.object_type}
           onChange={handleChange}
@@ -57,12 +68,12 @@ const TypesForm = ({ index }: TypesFormProps) => {
         <Select
           value={formData.object_title}
           label="Object Title"
-          options={fields.map((field) => field.value.trim())}
+          options={fields.map((field) => field.value)}
           name="object_title"
           onChange={handleChange}
         />
       </div>
-      <div>
+      <div className="px-3">
         <span className="mb-2">Fields</span>
         {fields.map((field, i) => {
           const value = FIELD_TYPE_OPTIONS.find(
@@ -71,24 +82,29 @@ const TypesForm = ({ index }: TypesFormProps) => {
           return (
             <div key={`field-${i + 1}`} className="d-flex">
               <InputField
+                className="input-wrapper"
                 onChange={(event) => handleChange(event, i)}
                 type={"text"}
                 value={field.value}
               />
-              <CustomDropdown
-                value={value}
-                options={FIELD_TYPE_OPTIONS}
-                onChange={({ value }) => handleUpdateFieldType(i, value)}
-              />
+              <div className="fieldType">
+                <CustomDropdown
+                  value={value}
+                  options={FIELD_TYPE_OPTIONS}
+                  onChange={({ value }) => handleUpdateFieldType(i, value)}
+                />
+              </div>
             </div>
           );
         })}
       </div>
-      <CustomDropdown
-        title="Add Field"
-        options={FIELD_TYPE_OPTIONS}
-        onChange={({ value }) => handleAddField(value)}
-      />
+      <div className="btnAddField px-3 py-2">
+        <CustomDropdown
+          title="Add Field"
+          options={FIELD_TYPE_OPTIONS}
+          onChange={({ value }) => handleAddField(value)}
+        />
+      </div>
     </div>
   );
 };

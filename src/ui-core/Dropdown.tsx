@@ -8,6 +8,7 @@ export interface DropdownOption {
 }
 
 interface CustomDropdownProps {
+  className?: string;
   onChange?: (value: DropdownOption) => void;
   options: DropdownOption[];
   title?: string;
@@ -15,6 +16,7 @@ interface CustomDropdownProps {
 }
 
 const CustomDropdown = ({
+  className,
   options,
   onChange,
   title,
@@ -34,7 +36,8 @@ const CustomDropdown = ({
 
   return (
     <DropdownButton
-      id="dropdown-basic-button"
+      className={className}
+      variant="secondary"
       title={title || selectedOption.label}
       onChange={(e) => console.log(e.target)}
     >

@@ -1,0 +1,38 @@
+.text-start > input {
+  min-height: 38px;
+  border-radius: 0.25rem;
+  border: 1px solid #ced4da;
+}
+.name {
+  background-color: #c1c6cb42;
+  justify-content: space-between;
+  border-bottom: 1px solid #ced4da;
+}
+
+.btnAddField > .dropdown .btn {
+  width: 100% !important;
+}
+.fieldType {
+  width: 120px;
+
+}
+.fieldType > .dropdown {
+  height: calc(100% - 8px);
+  width: 100%;
+}
+
+.fieldType > .dropdown .btn {
+  border-bottom-left-radius: unset;
+  border-top-left-radius: unset;
+  width: 100%;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+.fields > .text-start > input {
+  border-bottom-right-radius: unset;
+  border-top-right-radius: unset;
+}
+.input-wrapper {
+  width: calc(100% - 120px);
+}
