@@ -78,11 +78,7 @@ const Home = () => {
         {options.length ? (
           <Col
             md={2}
-            style={{
-              marginRight: "10px",
-              padding: "unset",
-            }}
-            className="d-flex justify-content-center align-items-center"
+            className="d-flex justify-content-center align-items-center p-0 mx-auto"
           >
             <CustomDropdown
               title="Add Item"

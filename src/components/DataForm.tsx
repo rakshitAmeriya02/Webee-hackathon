@@ -1,3 +1,4 @@
+import { useMemo } from "react";
 import { CloseButton } from "react-bootstrap";
 import { useDispatch } from "react-redux";
 import {
@@ -17,6 +18,12 @@ interface DataFormProps {
 const DataForm = ({ data, index }: DataFormProps) => {
   const dispatch = useDispatch();
   const fields = data?.fields || [];
+  const postfix = useMemo(() => {
+    const fields = data?.fields || [];
+    const object_title = data?.object_title;
+    const head = fields.find((item) => item.label === object_title);
+    return head?.value || "";
+  }, [data]);
 
   const handleChange = (
     event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
@@ -41,6 +48,7 @@ const DataForm = ({ data, index }: DataFormProps) => {
       default:
         return (
           <InputField
+            className="w-100"
             label={label}
             onChange={(event) => handleChange(event, i)}
             type={type}
@@ -58,7 +66,9 @@ const DataForm = ({ data, index }: DataFormProps) => {
   return (
     <div className="text-start">
       <div className="px-3 d-flex align-items-center py-2 name">
-        <p className="mb-0">{data?.object_type as string}</p>
+        <p className="mb-0">
+          {(data?.object_type as string) + (postfix ? " - " : "") + postfix}
+        </p>
         <CloseButton onClick={handleRemoveValue} />
       </div>
       <div className="d-flex flex-column px-3 py-2">

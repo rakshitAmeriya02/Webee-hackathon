@@ -17,6 +17,8 @@ export interface DataFields {
 export interface Data {
   [key: string]: string | DataFields[];
   id: string;
+  object_title: string;
+  object_type: string;
   typeId: string;
   fields: DataFields[];
 }
@@ -67,7 +69,7 @@ const removeData = (state: DataState, action: AppActions) => {
   const updatedState: DataState = JSON.parse(JSON.stringify(state));
   const typeId = action.payload.typeId;
   const index = action.payload.index;
-  updatedState[typeId].filter((_, i) => i !== index);
+  updatedState[typeId] = updatedState[typeId].filter((_, i) => i !== index);
   return updatedState;
 };
 

@@ -35,11 +35,7 @@ const ManageTypes = () => {
         ))}
         <Col
           md={2}
-          style={{
-            padding: "unset",
-            margin: 'auto'
-          }}
-          className="d-flex justify-content-center align-items-center"
+          className="d-flex justify-content-center align-items-center p-0 mx-auto"
         >
           <CustomButton className="w-100" onClick={handleAddType}>
             Add Type

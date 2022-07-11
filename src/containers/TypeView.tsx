@@ -54,7 +54,7 @@ const TypeView = () => {
         ))}
         <Col
           md={2}
-          className="d-flex justify-content-center align-items-center"
+          className="d-flex justify-content-center align-items-center mx-auto"
         >
           <CustomButton onClick={handleAddItem}>Add Item</CustomButton>
         </Col>

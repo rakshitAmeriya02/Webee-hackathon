@@ -50,7 +50,7 @@ const updateFormField = (state: TypeForm[], action: AppActions) => {
   const value = action.payload.value;
   const formIndex = action.payload.formIndex;
   const fieldIndex = action.payload.fieldIndex;
-  if (fieldIndex) {
+  if (fieldIndex !== undefined && fieldIndex !== null) {
     updatedState[formIndex].fields[fieldIndex].value = value;
   } else {
     updatedState[formIndex][name] = value;
