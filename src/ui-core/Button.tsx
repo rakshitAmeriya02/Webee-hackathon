@@ -3,7 +3,7 @@ import { Button } from "react-bootstrap";
 
 interface CustomButtonProps {
   className?: string;
-  children: React.ReactNode;
+  children?: React.ReactNode;
   onClick?: (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
 }
 

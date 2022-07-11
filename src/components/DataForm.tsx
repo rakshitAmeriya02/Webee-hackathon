@@ -47,8 +47,6 @@ const DataForm = ({ data, index }: DataFormProps) => {
     }
   };
 
-  console.log(data);
-
   return (
     <div>
       <div>

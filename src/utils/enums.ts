@@ -8,4 +8,5 @@ export enum FIELD_TYPE {
 export enum APP_ROUTES {
   ROOT = "/",
   TYPES = "/types",
+  TYPE = "/type/:typeId",
 }

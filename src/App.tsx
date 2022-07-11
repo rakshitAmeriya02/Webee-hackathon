@@ -4,6 +4,7 @@ import ManageTypes from "./containers/ManageTypes";
 import { APP_ROUTES } from "./utils/enums";
 
 import "./App.css";
+import TypeView from "./containers/TypeView";
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
         <Routes>
           <Route path={APP_ROUTES.ROOT} element={<Home />} />
           <Route path={APP_ROUTES.TYPES} element={<ManageTypes />} />
+          <Route path={APP_ROUTES.TYPE} element={<TypeView />} />
         </Routes>
       </BrowserRouter>
     </div>

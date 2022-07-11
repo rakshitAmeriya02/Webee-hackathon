@@ -18,7 +18,7 @@ const NavigationBar = () => {
       if (type.object_type) {
         defaultItems.push({
           label: type.object_type,
-          redirectTo: "#" as APP_ROUTES,
+          redirectTo: APP_ROUTES.TYPE.replace(":typeId", type.id) as APP_ROUTES,
         });
       }
     });
