@@ -1,6 +1,6 @@
 export enum FIELD_TYPE {
-  SMALL_TEXT = "small_text",
-  LONG_TEXT = "long_text",
+  SMALL_TEXT = "text",
+  LONG_TEXT = "text_area",
   NUMBER = "number",
   DATE = "date",
 }
