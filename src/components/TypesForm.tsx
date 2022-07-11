@@ -32,7 +32,7 @@ const TypesForm = ({ index }: TypesFormProps) => {
   };
 
   const handleUpdateFieldType = (fieldIndex: number, type: string) => {
-    dispatch(doUpdateFieldType(fieldIndex, index, type));
+    dispatch(doUpdateFieldType(fieldIndex, index, type, formData.id));
   };
 
   const handleChange = (
@@ -43,7 +43,7 @@ const TypesForm = ({ index }: TypesFormProps) => {
   ) => {
     const name = event.target.name;
     const value = event.target.value;
-    dispatch(doUpdateFormField(name, value, index, fieldIndex));
+    dispatch(doUpdateFormField(name, value, index, formData.id, fieldIndex));
   };
 
   const handleRemoveValue = () => {

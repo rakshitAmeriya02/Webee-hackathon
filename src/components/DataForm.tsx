@@ -38,6 +38,7 @@ const DataForm = ({ data, index }: DataFormProps) => {
       case FIELD_TYPE.LONG_TEXT:
         return (
           <TextArea
+            className="w-100"
             label={label}
             onChange={(event) => handleChange(event, i)}
             name={label}

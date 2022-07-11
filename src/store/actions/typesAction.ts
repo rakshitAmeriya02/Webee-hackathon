@@ -21,6 +21,7 @@ export const doUpdateFormField = (
   name: string,
   value: string | number,
   formIndex: number,
+  typeId: string,
   fieldIndex?: number
 ) => ({
   type: DO_UPDATE_FORM_FIELD,
@@ -29,19 +30,22 @@ export const doUpdateFormField = (
     value,
     formIndex,
     fieldIndex,
+    typeId,
   },
 });
 
 export const doUpdateFieldType = (
   fieldIndex: number,
   formIndex: number,
-  value: string
+  value: string,
+  typeId: string
 ) => ({
   type: DO_UPDATE_FIELD_TYPE,
   payload: {
     fieldIndex,
     formIndex,
     value,
+    typeId,
   },
 });
 

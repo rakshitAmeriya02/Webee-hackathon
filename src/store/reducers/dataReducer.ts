@@ -6,7 +6,11 @@ import {
   DO_REMOVE_DATA,
   DO_UPDATE_DATA_FIELDS,
 } from "../actions/dataActions";
-import { DO_REMOVE_TYPE } from "../actions/typesAction";
+import {
+  DO_REMOVE_TYPE,
+  DO_UPDATE_FIELD_TYPE,
+  DO_UPDATE_FORM_FIELD,
+} from "../actions/typesAction";
 
 export interface DataFields {
   value: string;
@@ -73,6 +77,51 @@ const removeData = (state: DataState, action: AppActions) => {
   return updatedState;
 };
 
+const updateFormField = (state: DataState, action: AppActions) => {
+  const updatedState: DataState = JSON.parse(JSON.stringify(state));
+  const name = action.payload.name;
+  const value = action.payload.value;
+  const fieldIndex = action.payload.fieldIndex;
+  const typeId = action.payload.typeId;
+  if (updatedState[typeId]) {
+    updatedState[typeId] = updatedState[typeId].map((item) => {
+      if (fieldIndex !== undefined && fieldIndex !== null) {
+        return {
+          ...item,
+          fields: item.fields.map((field, index) => ({
+            ...field,
+            label: fieldIndex === index ? value : field.label,
+          })),
+        };
+      } else {
+        return {
+          ...item,
+          [name]: value,
+        };
+      }
+    });
+  }
+  return updatedState;
+};
+
+const updateFormFieldType = (state: DataState, action: AppActions) => {
+  const updatedState: DataState = JSON.parse(JSON.stringify(state));
+  const fieldIndex = action.payload.fieldIndex;
+  const value = action.payload.value;
+  const typeId = action.payload.typeId;
+  if (updatedState[typeId]) {
+    updatedState[typeId] = updatedState[typeId].map((item) => ({
+      ...item,
+      fields: item.fields.map((field, index) => ({
+        ...field,
+        type: fieldIndex === index ? value : field.type,
+        value: fieldIndex === index ? "" : field.value,
+      })),
+    }));
+  }
+  return updatedState;
+};
+
 function dataReducer(state: DataState = {}, action: AppActions) {
   switch (action.type) {
     case DO_CREATE_NEW_ITEM:
@@ -83,6 +132,10 @@ function dataReducer(state: DataState = {}, action: AppActions) {
       return removeTypeData(state, action);
     case DO_REMOVE_DATA:
       return removeData(state, action);
+    case DO_UPDATE_FORM_FIELD:
+      return updateFormField(state, action);
+    case DO_UPDATE_FIELD_TYPE:
+      return updateFormFieldType(state, action);
     default:
       return state;
   }
